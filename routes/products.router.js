@@ -22,17 +22,24 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const { id } = req.params
 
-  res.json({
-    id,
-    name: 'Producto 2',
-    price: 1500
-  })
+  if (id === '999') {
+    res.status(404).json({
+      message: 'Hubo un error 😮'
+    })
+  } else {
+    res.status(200).json({
+      id,
+      name: 'Producto 2',
+      price: 1500
+    })
+  }
+
 })
 
 router.post('/', (req, res) => {
   const body = req.body
 
-  res.json({
+  res.status(201).json({
     message: 'created',
     data: body
   })
