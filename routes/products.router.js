@@ -12,7 +12,6 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const { id } = req.params
-
   const product = service.findOne(id)
 
   res.json(product)
@@ -20,33 +19,24 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   const body = req.body
+  const newProduct = service.create(body)
 
-  res.status(201).json({
-    message: 'created',
-    data: body
-  })
+  res.status(201).json(newProduct)
 })
 
 router.patch('/:id', (req, res) => {
   const { id } = req.params
-
   const body = req.body
+  const product = service.update(id, body)
 
-  res.json({
-    message: 'created',
-    data: body,
-    id
-  })
+  res.json(product)
 })
 
 router.delete('/:id', (req, res) => {
   const { id } = req.params
+  const rta = service.delete(id)
 
-  res.json({
-    message: 'delete',
-    data: body,
-    id
-  })
+  res.json(rta)
 })
 
 module.exports = router
